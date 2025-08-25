@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hệ thống Đặt lịch Mentor</title>
+  <meta name="theme-color" content="#1f4e8c" />
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+  <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}" as="style">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua menu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo">🎓</div>
+        <div class="brand-text">
+          <h1>MentorBooking</h1>
+          <span class="subtitle">Đặt lịch cố vấn nhanh gọn</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#" class="nav-link active">Đặt lịch</a>
+        <a href="/docs/" class="nav-link" target="_blank" rel="noopener">API Docs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <section class="grid">
+      <!-- Cột trái -->
+      <div class="card">
+        <div class="card-head">
+          <h2>1) Chọn mentor</h2>
+          <button id="refreshMentors" class="btn ghost" title="Tải lại danh sách">↻</button>
+        </div>
+        <div class="field">
+          <label for="mentorSelect">Mentor</label>
+          <select id="mentorSelect" aria-label="Chọn mentor"></select>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 class="mt">Giới thiệu nhanh</h3>
+        <div id="mentorInfo" class="mentor-info">
+          <p>Chọn mentor để xem mô tả.</p>
+        </div>
+      </div>
+
+      <!-- Cột phải -->
+      <div class="card">
+        <h2>2) Chọn khung giờ</h2>
+        <div class="field">
+          <label for="slotSelect">Khung giờ khả dụng</label>
+          <select id="slotSelect" aria-label="Chọn khung giờ"></select>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>3) Thông tin người đặt</h2>
+        <div class="field">
+          <label for="studentName">Họ tên</label>
+          <input id="studentName" placeholder="Nguyễn Văn A" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="note">Ghi chú (tuỳ chọn)</label>
+          <input id="note" placeholder="Mục tiêu buổi mentoring, câu hỏi..." />
+        </div>
+
+        <div class="actions">
+          <button id="bookBtn" class="btn primary">Đặt lịch</button>
+          <button id="clearBtn" class="btn">Xoá</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Kết quả</h2>
+        <button id="copyBtn" class="btn ghost" title="Copy JSON">📋</button>
+      </div>
+      <pre id="out" class="codebox" aria-live="polite">Chưa có dữ liệu.</pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© {{ 2025 }} MentorBooking</span>
+      <span class="sep">•</span>
+      <a href="/docs/" target="_blank" rel="noopener">Swagger</a>
+      <span class="sep">•</span>
+      <button id="toggleTheme" class="btn ghost sm">🌓 Chế độ sáng/tối</button>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>
