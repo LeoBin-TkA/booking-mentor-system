@@ -27,9 +27,7 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
-# ======================
 # MODELS
-# ======================
 class UserRegister(BaseModel):
     username: str
     email: EmailStr
@@ -46,9 +44,7 @@ class ResetPasswordRequest(BaseModel):
     token: str
     new_password: str
 
-# ======================
 # UTILS
-# ======================
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
@@ -174,4 +170,5 @@ def reset_password(req: ResetPasswordRequest):
     conn.commit()
 
     return {"msg": "Cập nhật mật khẩu thành công"}
+
 
