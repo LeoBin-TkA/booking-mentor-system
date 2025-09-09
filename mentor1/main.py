@@ -8,10 +8,7 @@ from email.mime.text import MIMEText
 import sqlite3
 from datetime import datetime, timedelta
 import secrets
-
-# ======================
 # CONFIG
-# ======================
 SECRET_KEY = "supersecretkey"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -24,9 +21,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 app = FastAPI()
 
-# ======================
 # DATABASE HELPER
-# ======================
 def get_db():
     conn = sqlite3.connect("mentor_booking.db")
     conn.row_factory = sqlite3.Row
@@ -179,3 +174,4 @@ def reset_password(req: ResetPasswordRequest):
     conn.commit()
 
     return {"msg": "Cập nhật mật khẩu thành công"}
+
